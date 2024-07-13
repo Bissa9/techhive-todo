@@ -124,8 +124,12 @@ const Todo: React.FC = () => {
               value={editTitle}
               onChangeText={setEditTitle}
             />
-            <Button title="Save" onPress={saveEdit} />
-            <Button title="Cancel" onPress={() => setEditTodo(null)} />
+            <View style={styles.modalButtons}>
+              <TouchableOpacity onPress={() => setEditTodo(null)}>
+                <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+              <Button title="Save" onPress={saveEdit} />
+            </View>
           </View>
         </Modal>
       )}
@@ -191,6 +195,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+
+  modalButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    marginTop: 16,
+  },
+  cancelText: {
+    color: "blue",
+    fontSize: 16,
+    padding: 8,
   },
 });
 
