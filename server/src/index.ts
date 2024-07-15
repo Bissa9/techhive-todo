@@ -31,8 +31,15 @@ app.post('/login', async (req: Request, res: Response) => {
   }
 });
 
-app.get('/todos', async (req: Request, res: Response) => {
-  const todos = await prisma.todo.findMany();
+app.get('/:userId/todos', async (req: Request, res: Response) => {
+  const {userId} = req.params;
+
+  console.log({userId});
+  const todos = await prisma.todo.findMany({
+    where: {
+      userId: userId
+    }
+  });
   res.json(todos);
 });
 

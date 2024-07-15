@@ -24,7 +24,10 @@ const Todo: React.FC = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/todos");
+      const userId = sessionStorage.getItem("userId");
+      const response = await axios.get(
+        `http://localhost:4000/$${userId}/todos`
+      );
       setTodos(response.data);
     } catch (error) {
       console.error(error);
